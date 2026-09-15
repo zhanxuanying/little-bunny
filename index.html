@@ -46,7 +46,11 @@
         <div class="scene">
           <div class="moon"></div>
           <div class="hill h1"></div><div class="hill h2"></div>
-          <div class="cottage-window"></div>
+          <div class="fairy-castle" aria-hidden="true">
+  <div class="castle-tower ct1"><span></span></div><div class="castle-tower ct2"><span></span></div><div class="castle-tower ct3"><span></span></div>
+  <div class="castle-house"><i class="castle-door"></i><i class="castle-win cw1"></i><i class="castle-win cw2"></i><i class="castle-win cw3"></i></div>
+</div>
+<div class="room-glow"><span>📚</span><span>🏮</span><span>🍳</span><span>🛏️</span></div>
           <div id="heroBunny" class="bunny bunny-hero" data-state="read" aria-label="会做日常生活的白色小兔子">
             <span class="ear ear-l"></span><span class="ear ear-r"></span>
             <span class="head"><i class="eye eye-l"></i><i class="eye eye-r"></i><i class="nose"></i><i class="cheek cheek-l"></i><i class="cheek cheek-r"></i></span>
@@ -126,7 +130,7 @@
       </div>
       <div class="garden-wrap glass">
         <div class="garden-scene">
-          <div class="sun"></div><div class="garden-fence"></div>
+          <div class="sun"></div><div class="garden-fence"></div><div class="wind-line wl1">⌁</div><div class="wind-line wl2">⌁</div><div class="wind-line wl3">⌁</div>
           <div class="garden-bunny bunny-small" id="gardenBunny">
             <span class="ear ear-l"></span><span class="ear ear-r"></span><span class="head"><i class="eye eye-l"></i><i class="eye eye-r"></i><i class="nose"></i></span><span class="body"></span><span class="foot foot-l"></span><span class="foot foot-r"></span>
           </div>
@@ -157,9 +161,10 @@
           <div id="calcResult" class="calc-result">—</div>
         </article>
         <article class="tool glass">
-          <div class="tool-icon">📝</div><h3>小纸条</h3>
-          <textarea id="memo" placeholder="想到什么就写下来…"></textarea>
-          <button class="soft-btn full" onclick="saveMemo()">保存</button>
+          <div class="tool-icon">💴</div><h3>货币数字大写</h3>
+          <input id="moneyInput" class="calc-input" inputmode="decimal" placeholder="例如 123456.78">
+          <button class="soft-btn full" onclick="moneyUpper()">转换人民币大写</button>
+          <div id="moneyResult" class="money-result">—</div>
         </article>
       </div>
     </section>

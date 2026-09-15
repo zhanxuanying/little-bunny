@@ -4,7 +4,8 @@
    2) 如需真正自动播放背景音乐，把 AUDIO_URL 换成你有权使用的 mp3/ogg 文件地址。
    浏览器通常会阻止页面首次加载时的自动播放，用户第一次点击页面后即可启动。
 */
-const NETEASE_PLAYLIST_URL = "https://music.163.com/#/user/home?id=3252572310";
+const NETEASE_PLAYLIST_URL = "https://music.163.com/";
+const WEREAD_SHELF_URL = "https://weread.qq.com/";
 const AUDIO_URL = ""; // 例如：assets/music.mp3
 
 const plants = [
@@ -61,15 +62,34 @@ async function loadWeather(){
 }
 loadWeather();
 
-function setBunnyState(){
-  const now=getBJNow(), h=now.getHours();
-  let idx;
-  if(h<7) idx=5; else if(h<9) idx=1; else if(h<11) idx=0; else if(h<13) idx=2; else if(h<15) idx=0; else if(h<17) idx=3; else if(h<19) idx=4; else idx=5;
-  const [state,status,thought]=states[idx];
-  const b=$("#heroBunny"); b.dataset.state=state;
-  $("#bunnyStatus").textContent=status;$("#bunnyThought").textContent=thought;
+const bunnyRoutine=[
+  ["walk","兔兔走向书房","“去拿今天想看的那本书。”",9000],
+  ["read","兔兔坐下来读书","“安静地读几页，窗外的风也慢下来。”",26000],
+  ["stretch","兔兔伸了个懒腰","“眼睛休息一下，再去花园看看。”",7000],
+  ["water","兔兔正在花园浇水","“月季、铃兰和胡萝卜，都喝一点水吧。”",24000],
+  ["garden","兔兔在花园看花","“风吹过来了，花朵也一起摇晃。”",13000],
+  ["cook","兔兔回厨房做饭","“把刚收的胡萝卜做成今天的晚饭。”",25000],
+  ["eat","兔兔坐下来吃饭","“好香。认真吃饭也是生活的一部分。”",15000],
+  ["walk","兔兔出门散步","“去城堡外面走一小圈，看看黄昏。”",28000],
+  ["listen","兔兔在黄昏听歌","“这一首歌，适合湖边的风。”",26000],
+  ["bath","兔兔洗澡啦","“洗掉一天的疲惫，换上柔软的睡衣。”",17000],
+  ["sleep","兔兔回床睡觉","“晚安。明天醒来，又是新的一天。”",42000]
+];
+let routineIndex=0,routineStart=performance.now();
+function setBunnyRoutine(item){
+ const [state,status,thought]=item;const b=$("#heroBunny");b.dataset.state=state;
+ $("#bunnyStatus").textContent=status;$("#bunnyThought").textContent=thought;
+ b.classList.remove("action-spark");void b.offsetWidth;b.classList.add("action-spark");
 }
-setBunnyState();setInterval(setBunnyState,60000);
+function routineFrame(now){
+ const item=bunnyRoutine[routineIndex],elapsed=now-routineStart;
+ const progress=Math.min(100,elapsed/item[3]*100);
+ const bar=$(".daily-card");
+ if(bar) bar.style.setProperty("--routine-progress",progress+"%");
+ if(elapsed>=item[3]){routineIndex=(routineIndex+1)%bunnyRoutine.length;routineStart=now;setBunnyRoutine(bunnyRoutine[routineIndex]);}
+ requestAnimationFrame(routineFrame);
+}
+setBunnyRoutine(bunnyRoutine[0]);requestAnimationFrame(routineFrame);
 
 function renderDiary(){
   const entries=[
@@ -137,3 +157,5 @@ $("#neteaseLink").href=NETEASE_PLAYLIST_URL;renderPlaylist();
 document.addEventListener("click",()=>{if(AUDIO_URL&&!audioStarted){const a=$("#bgAudio");a.src=AUDIO_URL;a.play().then(()=>audioStarted=true).catch(()=>{})}}, {once:true});
 $("#themeBtn").addEventListener("click",()=>{document.body.classList.toggle("night");toast(document.body.classList.contains("night")?"晚安模式 🌙":"白天模式 ☀️")});
 $("#year").textContent=new Date().getFullYear();
+
+$("#wereadLink").href=WEREAD_SHELF_URL;

@@ -56,3 +56,12 @@ Repository → Settings → Pages → Build and deployment → Source 选择 Git
 页面中的兔兔使用统一的原创 CSS/SVG 风格角色，不依赖多张不同兔子图片，因此读书、浇花、做饭、散步、睡觉时仍然是同一只兔兔。
 
 你可以继续把它升级成更丰富的逐帧动画或 Lottie 动画。
+
+
+## 可自定义
+
+- `script.js` 顶部 `NETEASE_PLAYLIST_URL`：网易云歌单
+- `script.js` 顶部 `WEREAD_SHELF_URL`：微信读书书架
+- `script.js` 顶部 `AUDIO_URL`：你有权使用的 mp3/ogg；浏览器仍可能阻止首次自动播放
+
+人民币大写工具、连续兔兔生活状态机、花园风吹动画和昼夜星空均已内置。
