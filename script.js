@@ -4,7 +4,7 @@
    2) 如需真正自动播放背景音乐，把 AUDIO_URL 换成你有权使用的 mp3/ogg 文件地址。
    浏览器通常会阻止页面首次加载时的自动播放，用户第一次点击页面后即可启动。
 */
-const NETEASE_PLAYLIST_URL = "https://music.163.com/";
+const NETEASE_PLAYLIST_URL = "https://music.163.com/#/user/home?id=3252572310";
 const WEREAD_SHELF_URL = "https://weread.qq.com/";
 const AUDIO_URL = ""; // 例如：assets/music.mp3
 
@@ -18,7 +18,7 @@ const plants = [
   {name:"铃兰", emoji:"🤍", care:70, note:"喜欢半阴和微风", harvest:false}
 ];
 const tracks = [
-  ["晚风","黄昏散步歌单"],["星辰大海","兔兔收藏"],["想去海边","晴天播放"],["好想你","厨房里的歌"],["温柔的夜","睡前歌单"]
+  ["A whole New World","黄昏散步歌单"],["星辰大海","兔兔收藏"],["想去海边","晴天播放"],["好想你","厨房里的歌"],["温柔的夜","睡前歌单"]
 ];
 const states = [
   ["read","兔兔正在读书","“今天也要留一点时间给喜欢的事情。”"],
