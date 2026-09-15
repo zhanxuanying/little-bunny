@@ -4,7 +4,7 @@
    2) 如需真正自动播放背景音乐，把 AUDIO_URL 换成你有权使用的 mp3/ogg 文件地址。
    浏览器通常会阻止页面首次加载时的自动播放，用户第一次点击页面后即可启动。
 */
-const NETEASE_PLAYLIST_URL = "https://music.163.com/";
+const NETEASE_PLAYLIST_URL = "https://music.163.com/#/user/home?id=3252572310/";
 const AUDIO_URL = ""; // 例如：assets/music.mp3
 
 const plants = [
